@@ -1,5 +1,8 @@
 package com.dave.autotrader.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -20,9 +23,14 @@ public class TradingViewAlert {
         this.indicatorName = indicatorName;
         this.interval = interval;
     }
-
-    public TradingViewAlert(String buyOrSell, String ticker, BigDecimal price, Instant tradingViewTime, String indicatorName, long interval) {
-        this(BuyOrSell.valueOf(buyOrSell),ticker,price,tradingViewTime,indicatorName,interval);
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public TradingViewAlert(@JsonProperty("BuyOrSell") String buyOrSell,
+                            @JsonProperty("Ticker") String ticker,
+                            @JsonProperty("Price") BigDecimal price,
+                            @JsonProperty("Time")String tradingViewTime,
+                            @JsonProperty("IndicatorName") String indicatorName,
+                            @JsonProperty("Interval") long interval) {
+        this(BuyOrSell.valueOf(buyOrSell),ticker,price,Instant.parse(tradingViewTime),indicatorName,interval);
     }
 
     public BuyOrSell getBuyOrSell() {
@@ -47,5 +55,17 @@ public class TradingViewAlert {
 
     public long getInterval() {
         return interval;
+    }
+
+    @Override
+    public String toString() {
+        return "TradingViewAlert{" +
+                "buyOrSell=" + buyOrSell +
+                ", ticker='" + ticker + '\'' +
+                ", price=" + price +
+                ", tradingViewTime=" + tradingViewTime +
+                ", indicatorName='" + indicatorName + '\'' +
+                ", interval=" + interval +
+                '}';
     }
 }

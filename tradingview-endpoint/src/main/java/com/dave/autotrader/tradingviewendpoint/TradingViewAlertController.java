@@ -27,7 +27,7 @@ public class TradingViewAlertController {
 
     @PostMapping
     public TradingViewAlert newTradingViewEvent(@RequestBody TradingViewAlert newTradingViewEvent) {
-        log.info("Hi Dave, post");
+        log.info("Got a POST.."+newTradingViewEvent);
         return dummyAlert;
     }
 
