@@ -12,7 +12,6 @@ public class TradingViewAlert {
     private final String indicatorName;
     private final long interval;
 
-
     public TradingViewAlert(BuyOrSell buyOrSell, String ticker, BigDecimal price, Instant tradingViewTime, String indicatorName, long interval) {
         this.buyOrSell = buyOrSell;
         this.ticker = ticker;
@@ -26,4 +25,27 @@ public class TradingViewAlert {
         this(BuyOrSell.valueOf(buyOrSell),ticker,price,tradingViewTime,indicatorName,interval);
     }
 
+    public BuyOrSell getBuyOrSell() {
+        return buyOrSell;
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Instant getTradingViewTime() {
+        return tradingViewTime;
+    }
+
+    public String getIndicatorName() {
+        return indicatorName;
+    }
+
+    public long getInterval() {
+        return interval;
+    }
 }
