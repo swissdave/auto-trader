@@ -6,8 +6,13 @@ mkdir -p $LOGS
 
 docker run --rm --detach  \
   --name apache \
-  --user 1000:1000 \
   -p 8090:8090 \
   -v $DIR/httpd.conf:/usr/local/apache2/conf/httpd.conf \
-  -v $LOGS:/usr/local/apache2/logs \
 httpd:2.4
+
+#  -e 'APACHE_RUN_USER=#1000' \
+#   -e 'APACHE_RUN_GROUP=#1000' \
+#   -v $LOGS:/usr/local/apache2/logs \
+
+#  --user 1000:1000 \
+
